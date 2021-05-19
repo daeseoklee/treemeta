@@ -1,0 +1,70 @@
+#:kivy 2.0.0
+
+
+<EditItemWindow>:
+    name:'edititem'
+    choicestate: self.state.make_choicestate()
+    top:top
+    content:content
+    BoxLayout:
+        orientation:'vertical'
+        EditItemWindowTop:
+            id:top
+            root:root
+            path:root.path 
+        EditItemContent:
+            id:content
+            root:root
+            choicestate: root.choicestate
+            #root.choicestate
+            
+
+
+<EditItemWindowTop>:
+    firstbox:firstbox
+    orientation:'vertical'
+    size_hint_y:None
+    height:self.minimum_height
+    BoxLayout:
+        id:firstbox
+        size_hint_y:None
+        height:'35dp'
+        Button:
+            text:'most general'
+            on_release: root.root.on_release_most_general()
+            size_hint_x:None 
+            width:'100dp'    
+        BoxLayout:
+            Label:
+                text:root.path
+        Button:
+            text:'re'
+            on_release:
+                root.root.on_release_return()
+            size_hint_x:None
+            width:'35dp'
+<SubmitButton>:
+    
+    text:'sub'
+    on_release:self.root.on_release_submit() 
+    size_hint_x:None
+    width:'35dp' 
+<ErrorMessageMenu>:
+    size_hint_y:None 
+    height:'35dp'
+    Label:
+        text:root.message
+        color:1,0,0,1
+        
+        
+
+
+<EditItemContent>:
+    choicewidget:choicewidget
+    EditItemChoiceWidget:
+        id:choicewidget
+        root:root.root
+        choicestate:root.choicestate
+        size_hint_x:3
+         
+        

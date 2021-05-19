@@ -1,0 +1,23 @@
+#treemeta config file
+<default rootdir>
+1
+<rootdirs>
+1. /home/daese/Dropbox/docs/study
+2. /home/daese/playground/metatree_example
+//
+<<1>>-------------------------- 
+<metatree file>
+a.mtr
+<favorites file>
+a_favorites.csv
+<metadata file>
+a_metadata.csv
+///
+<<2>>------------------------
+<metatree file>
+b.mtr
+<favorites file>
+b_favorites.csv
+<metadata file>
+b_metadata.csv
+///

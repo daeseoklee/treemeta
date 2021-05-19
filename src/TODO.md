@@ -1,0 +1,11 @@
+- [x] Test kv execution order (Conclusion: reference within a block:generally okay,reference(within kivy) to a property of a widget declared outside:not okay)
+- [x] Debug 'apply favorites' descendant problem 
+- [x] Metadata submission button, debug
+- [x] Basic explorer ui
+- [x] Implement 'get_choicestate_from_metadata' 
+- [x] Make 'Set as parent' button 
+- [x] Print error message real time
+- [x] Implement 'remove metadata' 
+- [x] 'remove metadata' button
+- [x] Explorer Ui improvement
+- [ ] Design  

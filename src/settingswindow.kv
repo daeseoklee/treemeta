@@ -1,0 +1,10 @@
+#:kivy 2.0.0
+
+<SettingsWindow>:
+    Button:
+        text: 'go back'
+        on_release: 
+            app.root.transition.direction='down'     
+            app.root.current='main'
+
+               

@@ -1,0 +1,85 @@
+*.temporary?
+-yes -> autoremove?   
+-no
+**autoremove?
+-yes
+-no
+=========================================
+**.big category
+-study -> subject(study), purpose(study), document type(study), author(study)
+-duty -> which duty?
+-hobby -> which hobby?
+-miscellaneous
+**which duty? 
+-TA
+**which hobby?
+-podcast
+-go 
+-reading 
+=study==============================================
+*subject(study)[subject]
+-math -> subject(math)
+-cs -> subject(cs)
+*subject(math)[subject]
+-discrete maths -> subject(discrete maths)
+*subject(discrete maths)
+-extremal graph theory -> pattern to find, technique 
+-other graph theory 
+*pattern to find
+-Hamilton cycle
+-Clique
+-Topological Clique
+-bihole 
+*technique 
+-{multiple choice} -> probabilistic,absorber
+*subject(cs)[subject] 
+-{multiple choice} -> program verification/theorem proving, machine learning
+*program verification/theorem proving 
+-y -> subject(program verification/theorem proving)
+-n
+*subject(program verification/theorem proving)
+-{multiple choice} -> automation, techniques program verification
+*automation 
+-y -> verification system(automation), approach(automation)
+-n 
+*verification system(automation)[system]
+-Coq
+-Isabelle/HOL 
+*approach(automation)
+-hammer with an external ATP
+-tactic learning by ML 
+*machine learning
+-y->deep learning? 
+-n
+*deep learning?
+-yes
+-no
+==================
+*purpose(study)[purpose]
+-school lecture 
+-research->research where? 
+*research where? 
+-Jaehoon's lab 
+-Gil's lab 
+==================
+*document type(study)[document type]
+-book 
+-paper->published?  
+-short expository
+*published? 
+-journal 
+-arXiv 
+-not yet  
+==================
+*author(study)[author]
+-me 
+-acquaintance -> who?(author;acquaintance)
+-well-known people 
+-don't know who
+*who?(author;acquaintance)[who?]
+-Jaehoon Kim 
+-Hong Liu 
+-Gil Huh  
+============================================
+=end==================
+

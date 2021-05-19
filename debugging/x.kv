@@ -1,0 +1,18 @@
+#:kivy 2.0.0
+
+<MainWindow>:
+    orientation:'vertical'
+    Button:
+        text:'abc'
+        xbox:xbox
+        on_release:xbox.clear_widgets()
+        canvas.before:
+            Color:
+                rgb:0,1,1
+            Rectangle:
+                size:self.size
+                pos:self.pos
+    XBox:
+        id:xbox
+
+    

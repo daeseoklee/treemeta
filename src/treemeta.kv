@@ -1,0 +1,69 @@
+#:kivy 2.0.0
+
+<WindowManager>:
+    main:main
+    settings:settings
+    state:self.state_manager.load_default_state()
+    MainWindow:
+        id:main
+        name:'main'
+        choicestate:root.state.make_choicestate()
+        windowmanager:root
+        
+    SettingsWindow:
+        id:settings
+        name:'settings'
+    Screen:
+        name:'edititem'
+
+
+
+#main-------------------------------------
+<MainWindow>:
+    name:'main' #required when the widget is updated
+    menubar:menubar
+    content:content
+    BoxLayout:
+        orientation:'vertical'
+        MenuBar:
+            id:menubar
+        MainWindowContent:
+            id:content
+            choicestate:root.choicestate
+            windowmanager:root.windowmanager
+            
+#main/menubar------------------------------
+<MenuBar@BoxLayout>:
+    size_hint_y:None
+    height:'40dp'
+    padding:'3dp'
+    spacing: '3dp'
+    BoxLayout:
+    
+    Button:
+        text: 's'
+        size_hint_x:None
+        width: '34dp'
+        on_release: 
+            app.root.main.manager.transition.direction='up'
+            app.root.current='settings'
+
+
+#main/content-----------------------------
+
+<MainWindowContent>:
+    choicewidget:choicewidget
+    explorer:explorer
+    BoxLayout:  
+        MainChoiceWidget:
+            id:choicewidget
+            explorer:explorer
+            choicestate:root.choicestate
+            size_hint_x:3
+                
+        Explorer:
+            id:explorer
+            size_hint_x:2
+            windowmanager:root.windowmanager
+
+

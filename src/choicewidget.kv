@@ -1,0 +1,287 @@
+#:kivy 2.0.0
+
+<ChoiceWidget>:
+    status: self.new_status('default') #'add_favorite', 'remove_favorite'
+    favorites_scroll:favorites_scroll
+    favorites_list:favorites_list
+    decided_scroll:decided_scroll
+    decided_list:decided_list
+    to_decide_scroll:to_decide_scroll
+    to_decide_list:to_decide_list
+    ScrollView:
+        id:favorites_scroll 
+        canvas.before:
+            Color:
+                rgb: 20/255, 20/255, 50/255
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        FavoritesList:
+            #mode:root.mode
+            id:favorites_list
+            padding:'4dp'
+            spacing:'10dp'
+            orientation: 'vertical'
+            size_hint_y:None
+            height: self.minimum_height
+            
+    ScrollView:
+        id:decided_scroll
+        canvas.before:
+            Color:
+                rgb: 20/255, 50/255, 20/255
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        DecidedList:
+            #mode:root.mode
+            id:decided_list
+            padding:'4dp'
+            spacing:'10dp'
+            orientation: 'vertical'
+            size_hint_y:None
+            height: self.minimum_height
+
+            
+            
+    ScrollView:
+        id:to_decide_scroll
+        canvas.before:
+            Color:
+                rgb: 50/255, 20/255, 20/255
+
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        ToDecideList:
+            #mode:root.mode
+            id:to_decide_list
+            padding:'4dp'
+            spacing:'10dp'
+            orientation: 'vertical'
+            size_hint_y:None
+            height: self.minimum_height
+
+#'favorites' scroll----------------------
+#FavoritesConfigureBox>>>>>>>>>>>>>>>>>>
+<FavoritesConfigureBox>:
+    orientation:'vertical'
+    size_hint_y:None
+    height:self.minimum_height
+<FavoritesConfigureButtons>:
+    size_hint_y:None
+    height:'30dp'
+<AddFavoriteButton>:
+    text:'+'
+    on_release: self.root.on_release_add_favorite()
+<RemoveFavoriteButton>:
+    text:'-'
+    on_release: self.root.on_release_remove_favorite()
+<ReturnAddFavoriteButton>:
+    text:'<-|'
+    on_release:self.root.on_release_return_add_favorite()
+<DoAddFavoriteButton>: 
+    text:'add'
+    on_release:self.root.on_release_do_add_favorite()
+<NewFavoriteNameTextInput>:
+    text:'name'
+    multline: False
+    size_hint_y:None
+    height:'30dp'
+<ReturnRemoveFavoriteButton>:
+    text:'<-|'
+    on_release:self.root.on_release_return_remove_favorite()
+#<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<FavoritesBox>:
+    base_box:base_box
+    orientation:'vertical'
+    size_hint_y:None
+    height:self.minimum_height
+    FavoritesBaseBox:
+        id:base_box
+        size_hint_y:None
+        height:'25dp'
+        Label:
+            text:root.basenode.name
+            canvas.before:
+                Color:
+                    rgb:0,0,0
+                Rectangle:
+                    pos:self.pos
+                    size:self.size 
+        Button:
+            id:updown_button
+            text:'up' if base_box.open else 'down'
+            on_press: root.on_press_updown()
+                
+<FavoritesSelectionBox>:
+    orientation:'vertical'
+    size_hint_y:None 
+    height:self.minimum_height
+<FavoriteBox>:
+    size_hint_y:None
+    height:'25dp'
+    FavoriteApplyButton:
+        root:root.root
+        favorite:root.favorite
+        text:self.favorite.name
+        on_release:self.on_release_this()
+<DoRemoveFavoriteButton>:
+    on_release:self.on_release_this()
+    text:'-'
+    size_hint_x:None
+    width:'25dp'
+    
+        
+
+
+#'decided' scroll----------------------
+
+<SingleDecisionBox>:
+    node: self.decision.seq[0][0]
+    n: self.decision.seq[0][1]
+    basename_box:basename_box
+    size_hint_y: None
+    height: '45dp'
+    BoxLayout:
+        orientation:'vertical'
+        BoxLayout:
+            id:basename_box
+            Label:
+                text: root.node.name
+                canvas.before:
+                    Color:
+                        rgb: 0,0,0
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+        Label:
+            text: '{}. {}'.format(root.n,'any' if root.n==0 else root.node.options[root.n-1].name)
+    Button:
+        text: 'r'
+        on_release: root.on_revert_release()
+        size_hint_x: None
+        width: '45dp'
+<SelectNodeCheckBox>:
+    on_active:self.update_current_selected_node()
+<MultipleChoiceDecisionBox>:
+    labels:labels
+    basename_box:basename_box
+    size_hint_y: None
+    height: self.minimum_height
+    padding: '20dp'
+    BoxLayout:
+        id:labels
+        orientation: 'vertical'
+        BoxLayout:
+            id:basename_box
+            Label: 
+                text:root.decision.base.name
+                size_hint_y:None
+                height: '30dp'
+                canvas.before:
+                    Color:
+                        rgb: 0,0,0
+                    Rectangle:
+                        size: self.width,self.height-8
+                        pos: self.x,self.y+4
+            
+    Button:
+        text:'r'
+        on_release: root.on_revert_release()
+        size_hint_x: None
+        width: '45dp'
+        size_hint_y: None
+        
+<MultipleChoiceDecisionLabel>:
+    size_hint_y:None
+    height: '25dp'
+
+<FavoriteDecisionBox>:
+    basename_box:basename_box
+    size_hint_y: None
+    height: '45dp'
+    canvas.before:
+        Color:
+            rgb: 20/255, 20/255, 50/255
+        Rectangle:
+            size:self.size
+            pos:self.pos
+    BoxLayout:
+        orientation:'vertical'
+        BoxLayout:
+            id:basename_box
+            Label:
+                text: root.decision.base.name
+                canvas.before:
+                    Color:
+                        rgb: 0,0,0
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+        Label:
+            text: root.decision.name
+    Button:
+        text: 'r'
+        on_release: root.on_revert_release()
+        size_hint_x: None
+        width: '45dp'
+    
+
+
+#'to_decide' scroll-----------------------
+<SingleQuestionBox>:
+    orientation:'vertical'
+    size_hint_y: None
+    height: self.minimum_height
+    Label:
+        text:self.parent.node.name
+        size_hint_y:None 
+        height: '40dp'
+        canvas.before:
+            Color:
+                rgb: 0,0,0
+            Rectangle:
+                size: self.width,self.height-8
+                pos: self.x,self.y+4
+<SingleQuestionEntry>:
+    size_hint_y: None
+    height: '30dp' 
+    text: '{}. {}'.format(self.n,'any' if self.n==0 else self.node.options[self.n-1].name)
+
+<MultipleChoiceQuestionBox>:
+    submit_button:submit_button
+    orientation: 'vertical'
+    size_hint_y: None
+    height: self.minimum_height
+    Label:
+        text:self.parent.node.name
+        size_hint_y:None
+        height: '40dp'
+        canvas.before:
+            Color:
+                rgb: 0,0,0
+            Rectangle:
+                size: self.width,self.height-8
+                pos: self.x,self.y+4
+    Button:
+        id:submit_button
+        text:'submit'
+        on_release: root.on_release_submit()
+        size_hint_y:None
+        height: '30dp'
+
+<MultipleChoiceQuestionEntry>:
+    size_hint_y: None
+    height: '30dp'
+    Label:
+        text:'{}:'.format(self.parent.node.options[0].children[self.parent.subnode_idx].name)
+        
+
+<MultipleChoiceQuestionEntryLabel>:
+    size_hint_x:None
+    width:'20dp'
+<MultipleChoiceQuestionEntryCheckBox>:
+    size_hint_x:None
+    width:'20dp'
+    on_active: self.parent.update_n(self.n)

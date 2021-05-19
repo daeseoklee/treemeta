@@ -1,0 +1,8 @@
+*.mc1
+-{multiple choice} -> a,b,c
+**a
+-y
+-n
+*.q
+-text1
+-text2
