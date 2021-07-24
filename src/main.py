@@ -99,9 +99,11 @@ class MainChoiceWidget(ChoiceWidget):
     self.explorer.update_ui()
   
 
+from pathlib import Path
+
 class TreeMeta(App):
   def build(self):
-    sm=StateManager('../config/config.txt')
+    sm=StateManager(str(Path(__file__).parent.parent/'config'/'config.txt'))
     #state=sm.load_default_state()
     #state=State('config/b.mtr','config/b_favorites.csv','config/b_metadata.csv')
     wm=WindowManager(state_manager=sm)
