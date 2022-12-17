@@ -1,5 +1,4 @@
 ## TreeMeta project to-do list
-- [x] Learn about semantic versioning 
 - [ ] Implement 'select root'
 - [ ] Design a class 'treemeta config'
 - [ ] Implement 'create metatree'. 
